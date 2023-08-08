@@ -7,7 +7,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 
 const Signup = () => {
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useAuthContext();
   const navigate = useNavigate();
@@ -20,19 +20,18 @@ const Signup = () => {
     e.preventDefault();
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setError("Passwords do not match");
+      setMessage("Passwords do not match");
       return;
     }    
 
     try { 
-      setError('')
+      setMessage('Password is changed successfully');
       setIsLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value);
-      navigate('/');
-
+            
     } catch (err) {
       const { message } = err;
-      setError(`Failed to create an account. ${message}`);
+      setMessage(`Failed to create an account. ${message}`);
     }
 
     setIsLoading(false);
@@ -43,7 +42,7 @@ const Signup = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Sign Up</h2>
-          { error && <Message type='danger' message={error} /> }
+          { message && <Message type='danger' message={message} /> }
 
           <Form onSubmit={handSignupleSubmit}>
             <Form.Group id='email'>

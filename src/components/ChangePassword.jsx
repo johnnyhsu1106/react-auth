@@ -6,37 +6,43 @@ import { useAuthContext } from '../contexts/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
-  const [error, setError] = useState('')
-  const passwordRef = useRef()
-  const passwordConfirmRef = useRef()
+  const [errorMsg, setErrorMsg] = useState('');
+  const [successMsg, setSuccessMsg] = useState('');
+  const passwordRef = useRef();
+  const passwordConfirmRef = useRef();
 
   const { changePassword } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
 
-
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setError('Passwords do not match');
+      setErrorMsg('Passwords do not match');
       return;
     }
 
     if (passwordRef.current.value.trim() === '') {
-      setError('Please enter password');
+      setErrorMsg('Please enter password');
       return;
     }
 
-    setIsLoading(true)
-    setError('')
+    setIsLoading(true);
+    setErrorMsg('');
+    setSuccessMsg('');
 
     try {
       await changePassword(passwordRef.current.value);
-      navigate('/login');  
+      setSuccessMsg('Password has been updated. Page will be redirected in 1 sec');
+      setTimeout(() => {
+        navigate('/login');    
+      }, 5000)
+      
+
     } catch (err) {
       const { message } = err;
-      setError(`Failed to update account ${message}`);
+      setErrorMsg(`Failed to update account ${message}`);
     }
 
     setIsLoading(false);
@@ -47,7 +53,8 @@ const ChangePassword = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Change Password</h2>
-          { error && <Message type='danger' message={error} /> }
+          {errorMsg && <Message type='danger' message={errorMsg}/>}
+          {successMsg && <Message type='success' message={successMsg} />}
 
           <Form onSubmit={handleFormSubmit}>
             

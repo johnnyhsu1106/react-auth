@@ -3,12 +3,13 @@ import { Form, Button, Card } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 import Message from './Message'
+
 import { useAuthContext } from '../contexts/AuthContext'
 
 const ForgotPassword = () => {
  
-  const [error, setError] = useState('')
-  const [message, setMessage] = useState('')
+  const [errorMsg, setErrorMsg] = useState('')
+  const [successMsg, setSuccessMsg] = useState('')
   const [isLoading, setIsLoading] = useState(false)
 
   const { resetPassword } = useAuthContext();
@@ -19,16 +20,16 @@ const ForgotPassword = () => {
     e.preventDefault()
 
     try {
-      setMessage('')
-      setError('')
+      setSuccessMsg('')
+      setErrorMsg('')
       setIsLoading(true)
 
       await resetPassword(emailRef.current.value);
-      setMessage('Check your inbox to reset your password');
+      setSuccessMsg('Check your inbox for reset your password');
     
     } catch (err) {
       const { message } = err;
-      setError(`Failed to reset password. ${message}`);
+      setErrorMsg(`Failed to reset password. ${message}`);
     }
 
     setIsLoading(false);
@@ -39,8 +40,8 @@ const ForgotPassword = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Password Reset</h2>
-          {error && <Message type='danger' message={error}/>}
-          {message && <Message type='success' message={message} />}
+          {errorMsg && <Message type='danger' message={errorMsg}/>}
+          {successMsg && <Message type='success' message={successMsg} />}
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Group id='email'>

@@ -7,19 +7,19 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 
 const Dashboard = () => {
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const { logout, user } = useAuthContext();
   const navigate = useNavigate();
   
   const handleUserLogout = async () => {
-    setError('')
+    setMessage('')
 
     try {
       await logout();
       navigate('/login');      
     
     } catch (err) {
-      setError('Failed to log out');
+      setMessage('Failed to log out');
     }
 
   };
@@ -31,7 +31,7 @@ const Dashboard = () => {
         <Card.Body>
 
           <h2 className="text-center mb-4">Profile</h2>
-          {error && <Message type='danger' error={error} />}
+          {message && <Message type='danger' message={message} />}
           <strong>Email:</strong> { user && user.email }
     
           <Link 

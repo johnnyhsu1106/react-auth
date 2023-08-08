@@ -7,7 +7,7 @@ import { useAuthContext } from '../contexts/AuthContext';
 
 
 const Login = () => {
-  const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { login } = useAuthContext();
   const navigation = useNavigate();
@@ -19,14 +19,14 @@ const Login = () => {
     e.preventDefault();
 
     try { 
-      setError('')
+      setMessage('')
       setIsLoading(true)
       await login(emailRef.current.value, passwordRef.current.value);
       navigation('/');
 
     } catch (err) {
       const { message } = err;
-      setError(`Failed to log in. ${message}`);
+      setMessage(`Failed to log in. ${message}`);
 
     }
 
@@ -38,7 +38,7 @@ const Login = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Log In</h2>
-          { error && <Message type='danger' message={error} /> }
+          { message && <Message type='danger' message={message} /> }
 
           <Form onSubmit={handLoginleSubmit}>
             <Form.Group id='email'>
