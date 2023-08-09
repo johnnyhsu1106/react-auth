@@ -17,3 +17,4 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ![image](https://github.com/johnnyhsu1106/react-auth/assets/18588513/e84c6ce6-583b-4acc-9d4b-5a7f0182eda6)
 ![image](https://github.com/johnnyhsu1106/react-auth/assets/18588513/7b06a697-ac33-4a9f-bd4c-cd63d9ef8403)
 ![image](https://github.com/johnnyhsu1106/react-auth/assets/18588513/0852f5db-4f81-4109-bc40-12dcb3ebebc5)
+![image](https://github.com/johnnyhsu1106/react-auth/assets/18588513/1461d2ce-6b20-4261-b907-47687fc335e3)
