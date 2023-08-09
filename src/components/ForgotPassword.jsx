@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import Message from './Message'
 
@@ -14,6 +14,7 @@ const ForgotPassword = () => {
 
   const { resetPassword } = useAuthContext();
   const emailRef = useRef();
+  const navigate = useNavigate();
 
 
   async function handleFormSubmit(e) {
@@ -25,8 +26,13 @@ const ForgotPassword = () => {
       setIsLoading(true)
 
       await resetPassword(emailRef.current.value);
-      setSuccessMsg('Check your inbox for reset your password');
-    
+      setSuccessMsg('Check your inbox for reset your password. Page will be redirected in 3 sec');
+      
+      setTimeout(() => {
+        navigate('/login');
+        
+      }, 3000)
+      
     } catch (err) {
       setErrorMsg(`Failed to reset password. ${message}`);
     }

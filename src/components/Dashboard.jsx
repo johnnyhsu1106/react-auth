@@ -23,7 +23,6 @@ const Dashboard = () => {
     }
 
   };
-  
 
   return (
     <>
@@ -32,8 +31,9 @@ const Dashboard = () => {
 
           <h2 className="text-center mb-4">Profile</h2>
           {message && <Message type='danger' message={message} />}
-          <strong>Email:</strong> { user && user.email }
-    
+          <div><strong>Email:</strong> { user.email }</div>
+          <div><strong>Last Sign In:</strong> { user.metadata.lastSignInTime}</div>
+          
           <Link 
             to="/change-password" 
             className="btn btn-primary w-100 mt-3">
