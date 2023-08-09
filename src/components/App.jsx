@@ -7,6 +7,7 @@ import Login from './Login';
 import Signup from './Signup';
 import ForgotPassword from './ForgotPassword';
 import ChangePassword from './ChangePassword';
+import PageNotFound from './PageNotFound';
 import PrivateRoute from './PrivateRoute';
 
 import { AuthProvider } from '../contexts/AuthContext'
@@ -35,6 +36,7 @@ function App() {
               <Route path='/signup' element={<Signup/>} />
               <Route path='/login' element={<Login/>} />
               <Route path='/forgot-password' element={<ForgotPassword/>} />
+              <Route path='*' element={<PageNotFound/>} />
             </Routes>
 
           </AuthProvider>
@@ -45,4 +47,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
