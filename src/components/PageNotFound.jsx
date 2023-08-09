@@ -11,7 +11,8 @@ const PageNotFound = () => {
         </p>
       <Link
         className='btn btn-primary' 
-        to='/'>Go home
+        to='/'>
+          Go home
       </Link>
     </div>
   )
