@@ -28,7 +28,6 @@ const ForgotPassword = () => {
       setSuccessMsg('Check your inbox for reset your password');
     
     } catch (err) {
-      const { message } = err;
       setErrorMsg(`Failed to reset password. ${message}`);
     }
 

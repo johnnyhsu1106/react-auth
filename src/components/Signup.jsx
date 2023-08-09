@@ -25,13 +25,13 @@ const Signup = () => {
     }    
 
     try { 
-      setMessage('Password is changed successfully');
+      setMessage('');
       setIsLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value);
+      navigate('/')
             
     } catch (err) {
-      const { message } = err;
-      setMessage(`Failed to create an account. ${message}`);
+      setMessage('Failed to create an account');
     }
 
     setIsLoading(false);

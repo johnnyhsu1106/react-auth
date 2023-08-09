@@ -11,20 +11,20 @@ const ChangePassword = () => {
   const passwordRef = useRef();
   const passwordConfirmRef = useRef();
 
-  const { changePassword } = useAuthContext();
+  const { user, changePassword } = useAuthContext();
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setErrorMsg('Passwords do not match');
+    if (passwordRef.current.value.trim() === '' || passwordConfirmRef.current.value.trim() === '') {
+      setErrorMsg('Please enter password');
       return;
     }
 
-    if (passwordRef.current.value.trim() === '') {
-      setErrorMsg('Please enter password');
+    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+      setErrorMsg('Passwords do not match');
       return;
     }
 
@@ -34,15 +34,13 @@ const ChangePassword = () => {
 
     try {
       await changePassword(passwordRef.current.value);
-      setSuccessMsg('Password has been updated. Page will be redirected in 1 sec');
+      setSuccessMsg(`Password has been updated. Page will be redirected in 3 sec`);
       setTimeout(() => {
         navigate('/login');    
-      }, 5000)
+      }, 3000)
       
-
     } catch (err) {
-      const { message } = err;
-      setErrorMsg(`Failed to update account ${message}`);
+      setErrorMsg('Failed to update account');
     }
 
     setIsLoading(false);

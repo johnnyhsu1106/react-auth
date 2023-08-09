@@ -25,8 +25,8 @@ const Login = () => {
       navigation('/');
 
     } catch (err) {
-      const { message } = err;
-      setMessage(`Failed to log in. ${message}`);
+
+      setMessage('Failed to log in');
 
     }
 
