@@ -21,7 +21,6 @@ const Dashboard = () => {
     } catch (err) {
       setErrorMsg('Failed to log out');
     }
-
   };
 
   return (
@@ -31,7 +30,7 @@ const Dashboard = () => {
 
           <h2 className="text-center mb-4">Profile</h2>
           {errorMsg && <Message type='danger' message={errorMsg} />}
-          <div><strong>Email:</strong> { user.email }</div>
+          <div><strong>Email: </strong> { user.email }</div>
           <div><strong>Last Sign In:</strong> { user.metadata.lastSignInTime}</div>
           
           <Link 
