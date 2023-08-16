@@ -83,7 +83,13 @@ const ChangePassword = () => {
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>
-        <Link to='/'>Cancel</Link>
+        <Button 
+          variant="link" 
+          onClick={() => {navigate(-1)}}
+        > 
+          Cancel          
+        </Button>
+
       </div>
     </>
   )
