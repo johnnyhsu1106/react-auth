@@ -26,18 +26,16 @@ const ForgotPassword = () => {
       setIsLoading(true)
 
       await resetPassword(emailRef.current.value);
-      setSuccessMsg('Check your inbox for reset your password. Page will be redirected in 3 sec');
-      
+      setSuccessMsg('Check your inbox for reset your password. Page will be redirected now');
       setTimeout(() => {
         navigate('/login');
         
-      }, 3000)
+      }, 1500)
       
     } catch (err) {
-      setErrorMsg(`Failed to reset password. ${message}`);
+      setErrorMsg('Failed to reset password');
+      setIsLoading(false);
     }
-
-    setIsLoading(false);
   }
 
   return (

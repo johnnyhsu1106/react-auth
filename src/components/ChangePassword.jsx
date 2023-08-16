@@ -37,7 +37,7 @@ const ChangePassword = () => {
       setSuccessMsg(`Password has been updated. Page will be redirected`);
       setTimeout(() => {
         navigate('/login');    
-      }, 1000)
+      }, 1500)
       
     } catch (err) {
       setErrorMsg('Failed to change password.');
