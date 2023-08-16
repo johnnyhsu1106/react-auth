@@ -31,11 +31,11 @@ function App() {
                 <Route path='/' element={<Dashboard/>} />
               </Route>
               <Route element={<PrivateRoute/>} >
-                <Route path='/change-password' element={<ChangePassword/>} />
+                <Route path='change-password' element={<ChangePassword/>} />
               </Route>
-              <Route path='/signup' element={<Signup/>} />
-              <Route path='/login' element={<Login/>} />
-              <Route path='/forgot-password' element={<ForgotPassword/>} />
+              <Route path='signup' element={<Signup/>} />
+              <Route path='login' element={<Login/>} />
+              <Route path='forgot-password' element={<ForgotPassword/>} />
               <Route path='*' element={<PageNotFound/>} />
             </Routes>
 
