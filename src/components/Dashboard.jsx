@@ -36,7 +36,7 @@ const Dashboard = () => {
           
           <Link 
             to="/change-password" 
-            className="btn btn-secondary w-100 mt-3">
+            className="btn btn-primary w-100 mt-3">
             Change Password
           </Link>
 

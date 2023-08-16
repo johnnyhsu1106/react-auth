@@ -68,12 +68,12 @@ const ChangePassword = () => {
               <Form.Control
                 type='password'
                 ref={passwordConfirmRef}
-                placeholder='confirm your password'
+                placeholder='Confirm your password'
               />
             </Form.Group>
             
             <Button 
-              variant='success'
+              variant='primary'
               disabled={isLoading} 
               className='w-100 mt-4' 
               type='submit'>
