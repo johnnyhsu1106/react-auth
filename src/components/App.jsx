@@ -10,7 +10,7 @@ import ChangePassword from './ChangePassword';
 import PageNotFound from './PageNotFound';
 import PrivateRoute from './PrivateRoute';
 
-import { AuthProvider } from '../contexts/AuthContext'
+import { AuthProvider } from '../context/AuthContext'
 
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"

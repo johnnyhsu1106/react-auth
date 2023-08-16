@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 
 import Message from './Message';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 import { Link, useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
@@ -56,23 +56,27 @@ const ChangePassword = () => {
 
           <Form onSubmit={handleFormSubmit}>
             
-            <Form.Group id='password'>
-              <Form.Label>Password</Form.Label>
+            <Form.Group id='password' className='mb-4'>
               <Form.Control
                 type='password'
                 ref={passwordRef}
+                placeholder='Must have a least 6 characters'
               />
             </Form.Group>
 
             <Form.Group id='password-confirm'>
-              <Form.Label>Comfirm Password</Form.Label>
               <Form.Control
                 type='password'
                 ref={passwordConfirmRef}
+                placeholder='confirm your password'
               />
             </Form.Group>
             
-            <Button disabled={isLoading} className='w-100 mt-4' type='submit'>
+            <Button 
+              variant='success'
+              disabled={isLoading} 
+              className='w-100 mt-4' 
+              type='submit'>
               Update
             </Button>
           </Form>

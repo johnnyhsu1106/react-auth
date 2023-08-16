@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 
 import Message from './Message'
 
-import { useAuthContext } from '../contexts/AuthContext'
+import { useAuthContext } from '../context/AuthContext'
 
 const ForgotPassword = () => {
  
@@ -50,11 +50,19 @@ const ForgotPassword = () => {
 
           <Form onSubmit={handleFormSubmit}>
             <Form.Group id='email'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type='email' ref={emailRef} required />
+              <Form.Control 
+                placeholder='example@gmail.com'
+                type='email' 
+                ref={emailRef} 
+                required />
             </Form.Group>
 
-            <Button disabled={isLoading} className='w-100 mt-4' type='submit'>
+            <Button 
+              variant='secondary'
+              disabled={isLoading} 
+              className='w-100 mt-4' 
+              type='submit'
+            >
               Reset Password
             </Button>
           </Form>

@@ -3,7 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './Message';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 
 const Login = () => {
@@ -41,17 +41,29 @@ const Login = () => {
           { message && <Message type='danger' message={message} /> }
 
           <Form onSubmit={handLoginleSubmit}>
-            <Form.Group id='email'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type='email' ref={emailRef} required />
+            <Form.Group id='email' className='mb-3'>
+              <Form.Control 
+                type='email'
+                ref={emailRef}
+                placeholder='example@gmail.com'  
+                required 
+              />
             </Form.Group>
 
             <Form.Group id='password'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control type='password' ref={passwordRef} required />
+              <Form.Control 
+                type='password' 
+                ref={passwordRef}
+                placeholder='Enter your password'
+                required 
+              />
             </Form.Group>
             
-            <Button disabled={isLoading} className='w-100 mt-4' type='submit'>
+            <Button 
+              variant='secondary'
+              disabled={isLoading} 
+              className='w-100 mt-4' 
+              type='submit'>
               Login
             </Button>
           </Form>

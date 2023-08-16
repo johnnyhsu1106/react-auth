@@ -3,7 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './Message';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 
 const Signup = () => {
@@ -45,22 +45,38 @@ const Signup = () => {
           { message && <Message type='danger' message={message} /> }
 
           <Form onSubmit={handSignupleSubmit}>
-            <Form.Group id='email'>
-              <Form.Label>Email</Form.Label>
-              <Form.Control type='email' ref={emailRef} required />
+            <Form.Group id='email' className='mb-3'>
+              <Form.Control 
+                type='email' 
+                ref={emailRef} 
+                required
+                placeholder='example@gmail.com'
+              />
             </Form.Group>
 
-            <Form.Group id='password'>
-              <Form.Label>Password</Form.Label>
-              <Form.Control type='password' ref={passwordRef} required />
+            <Form.Group id='password' className='mb-3'>
+              <Form.Control 
+                type='password' 
+                ref={passwordRef} 
+                required 
+                placeholder='Must have a least 6 characters'
+              />
             </Form.Group>
 
             <Form.Group id='password-confirm'>
-              <Form.Label>Password Confirmation</Form.Label>
-              <Form.Control type='password' ref={passwordConfirmRef} required />
+              <Form.Control 
+                type='password' 
+                ref={passwordConfirmRef} 
+                required 
+                placeholder='confirm your password'
+              />
             </Form.Group>
             
-            <Button disabled={isLoading} className='w-100 mt-4' type='submit'>
+            <Button 
+              variant='secondary'
+              disabled={isLoading} 
+              className='w-100 mt-4' 
+              type='submit'>
               Sign Up
             </Button>
           </Form>

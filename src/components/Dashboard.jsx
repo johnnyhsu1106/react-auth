@@ -3,7 +3,7 @@ import { Card, Button } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './Message';
-import { useAuthContext } from '../contexts/AuthContext';
+import { useAuthContext } from '../context/AuthContext';
 
 
 const Dashboard = () => {
@@ -36,7 +36,7 @@ const Dashboard = () => {
           
           <Link 
             to="/change-password" 
-            className="btn btn-primary w-100 mt-3">
+            className="btn btn-secondary w-100 mt-3">
             Change Password
           </Link>
 
