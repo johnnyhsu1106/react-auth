@@ -40,7 +40,7 @@ const ChangePassword = () => {
       }, 3000)
       
     } catch (err) {
-      setErrorMsg('Failed to update account');
+      setErrorMsg('Failed to change password');
     }
 
     setIsLoading(false);
