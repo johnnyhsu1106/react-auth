@@ -6,7 +6,7 @@ const PrivateRoute = () => {
   const { user } = useAuthContext();
 
   return (
-    user ? <Outlet/ > : <Navigate to='/login' replace/>
+    user ? <Outlet /> : <Navigate to='/login' replace/>
   )
 }
 
