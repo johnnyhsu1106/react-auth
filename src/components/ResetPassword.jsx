@@ -6,7 +6,7 @@ import Message from './Message'
 
 import { useAuthContext } from '../context/AuthContext'
 
-const ForgotPassword = () => {
+const ResetPassword = () => {
  
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
@@ -77,4 +77,4 @@ const ForgotPassword = () => {
   )
 }
 
-export default ForgotPassword;
+export default ResetPassword;
