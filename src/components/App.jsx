@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import Login from './Login';
 import Signup from './Signup';
-import ForgotPassword from './ForgotPassword';
+import ResetPassword from './ResetPassword';
 import ChangePassword from './ChangePassword';
 import PageNotFound from './PageNotFound';
 import PrivateRoute from './PrivateRoute';
@@ -35,7 +35,7 @@ function App() {
               </Route>
               <Route path='signup' element={<Signup/>} />
               <Route path='login' element={<Login/>} />
-              <Route path='forgot-password' element={<ForgotPassword/>} />
+              <Route path='reset-password' element={<ResetPassword/>} />
               <Route path='*' element={<PageNotFound/>} />
             </Routes>
 
