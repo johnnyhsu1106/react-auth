@@ -17,4 +17,5 @@ Checkout this repo, install dependencies, then start the gulp process with the f
 ![image](https://github.com/johnnyhsu1106/react-firebase-auth/assets/18588513/340e29b4-8da2-4bf8-b7e5-630353a2eefc)
 ![image](https://github.com/johnnyhsu1106/react-firebase-auth/assets/18588513/0a2124a6-d51a-465d-9807-c31a84470168)
 ![image](https://github.com/johnnyhsu1106/react-firebase-auth/assets/18588513/7236f372-2ffe-4246-87ca-ef349fe54789)
+![image](https://github.com/johnnyhsu1106/react-firebase-auth/assets/18588513/c20864ca-ba9d-4bdd-b624-cc7f10b58994)
 
