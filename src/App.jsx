@@ -2,15 +2,15 @@ import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
-import Dashboard from './Dashboard';
-import Login from './Login';
-import Signup from './Signup';
-import ResetPassword from './ResetPassword';
-import ChangePassword from './ChangePassword';
-import PageNotFound from './PageNotFound';
-import PrivateRoute from './PrivateRoute';
+import Dashboard from './components/Dashboard';
+import Login from './components/Login';
+import Signup from './components/Signup';
+import ResetPassword from './components/ResetPassword';
+import ChangePassword from './components/ChangePassword';
+import PageNotFound from './components/PageNotFound';
+import PrivateRoute from './components/PrivateRoute';
 
-import { AuthProvider } from '../context/AuthContext'
+import { AuthProvider } from './context/AuthContext'
 
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
