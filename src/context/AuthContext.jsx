@@ -15,7 +15,11 @@ const auth = getAuth(app);
 const AuthContext = createContext();
 
 const useAuthContext = () => {
-  return useContext(AuthContext);  
+  const auth = useContext(AuthContext);
+  if (auth === undefined) {
+    throw new Error('useAuthContext must be used within AuthProvider');
+  }
+  return auth;
 }
 
 const AuthProvider = ({ children }) => {
