@@ -24,7 +24,7 @@ const ResetPassword = () => {
 
     try {
       await resetPassword(emailRef.current?.value || '');
-      setSuccessMsg('Check your inbox for reset your password. Page will be redirected now');
+      setSuccessMsg('Check your inbox for reset your password.');
       setIsSucceed(true);
 
       setTimeout(() => {

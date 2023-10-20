@@ -10,6 +10,7 @@ const Signup = () => {
   const [successMsg, setSuccessMsg] = useState('')
   const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [isSucceed, setIsSucceed] = useState(false);
   const { signup } = useAuthContext();
   const navigate = useNavigate();
 
@@ -36,12 +37,14 @@ const Signup = () => {
     try { 
       await signup(emailRef.current.value, passwordRef.current.value);
       setSuccessMsg('New Account is created.');
+      setIsSucceed(true);
       setTimeout(() => {
         navigate('/');
       }, 1500)
       
     } catch (err) {
       setErrorMsg('Failed to create an account');
+      setIsSucceed(false);
 
     } finally {
       setIsLoading(false);
@@ -85,7 +88,7 @@ const Signup = () => {
             
             <Button 
               variant='primary'
-              disabled={isLoading} 
+              disabled={isLoading || isSucceed} 
               className='w-100 mt-4' 
               type='submit'>
               Sign Up

@@ -35,7 +35,7 @@ const ChangePassword = () => {
 
     try {
       await changePassword(passwordRef.current.value);
-      setSuccessMsg(`Password has been updated. Page will be redirected`);
+      setSuccessMsg(`Password has been updated.`);
       setIsSucceed(true);
       setTimeout(() => {
         navigate('/login');    
