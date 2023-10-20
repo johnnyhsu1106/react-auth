@@ -26,10 +26,6 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const signup = (email, password) => {
-    return createUserWithEmailAndPassword(auth, email, password);
-  };
-
   const login = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -38,14 +34,22 @@ const AuthProvider = ({ children }) => {
     return signOut(auth);
   };
 
+  const signup = (email, password) => {
+    return createUserWithEmailAndPassword(auth, email, password);
+  };
+
   const resetPassword = (email) => {
     return sendPasswordResetEmail(auth, email)
   };
 
   const changePassword = (password) => {
+    if (!user) {
+      return new Promise((_, reject) => {
+        reject('User is null');
+      })
+    }
     return updatePassword(user, password);
   };
-
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {

@@ -10,30 +10,32 @@ const ResetPassword = () => {
  
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSucceed, setIsSucceed] = useState(false);
   const { resetPassword } = useAuthContext();
   const emailRef = useRef();
   const navigate = useNavigate();
 
-
   async function handleFormSubmit(e) {
-    e.preventDefault()
+    e.preventDefault();
+  
+    setIsLoading(true)
+    setErrorMsg('')
 
     try {
-      setSuccessMsg('')
-      setErrorMsg('')
-      setIsLoading(true)
-
-      await resetPassword(emailRef.current.value);
+      await resetPassword(emailRef.current?.value || '');
       setSuccessMsg('Check your inbox for reset your password. Page will be redirected now');
+      setIsSucceed(true);
+
       setTimeout(() => {
         navigate('/login');
-        
-      }, 1500)
+      }, 3000)
       
     } catch (err) {
       setErrorMsg('Failed to reset password');
+      setIsSucceed(false);
+      
+    } finally {
       setIsLoading(false);
     }
   }
@@ -57,7 +59,7 @@ const ResetPassword = () => {
 
             <Button 
               variant='primary'
-              disabled={isLoading} 
+              disabled={isLoading || isSucceed} 
               className='w-100 mt-4' 
               type='submit'
             >

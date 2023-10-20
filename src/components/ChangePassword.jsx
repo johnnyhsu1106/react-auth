@@ -3,22 +3,24 @@ import { Form, Button, Card } from 'react-bootstrap';
 
 import Message from './Message';
 import { useAuthContext } from '../context/AuthContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ChangePassword = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isSucceed, setIsSucceed] = useState(false);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
 
-  const { user, changePassword } = useAuthContext();
-  const [isLoading, setIsLoading] = useState(false)
+  const { changePassword } = useAuthContext();
+
   const navigate = useNavigate();
 
   const handleFormSubmit = async (e) => {
     e.preventDefault()
 
-    if (passwordRef.current.value.trim() === '' || passwordConfirmRef.current.value.trim() === '') {
+    if (passwordRef.current?.value.trim() === '' || passwordConfirmRef.current?.value.trim() === '') {
       setErrorMsg('Please enter password');
       return;
     }
@@ -30,19 +32,22 @@ const ChangePassword = () => {
 
     setIsLoading(true);
     setErrorMsg('');
-    setSuccessMsg('');
 
     try {
       await changePassword(passwordRef.current.value);
       setSuccessMsg(`Password has been updated. Page will be redirected`);
+      setIsSucceed(true);
       setTimeout(() => {
         navigate('/login');    
       }, 1500)
       
     } catch (err) {
       setErrorMsg('Failed to change password.');
+      setIsSucceed(false);
+
+    } finally {
       setIsLoading(false);
-    }
+  }
   };
 
   return (
@@ -73,7 +78,7 @@ const ChangePassword = () => {
             
             <Button 
               variant='primary'
-              disabled={isLoading} 
+              disabled={isLoading || isSucceed}
               className='w-100 mt-4' 
               type='submit'>
               Update

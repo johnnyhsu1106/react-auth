@@ -7,34 +7,45 @@ import { useAuthContext } from '../context/AuthContext';
 
 
 const Signup = () => {
-  const [message, setMessage] = useState('');
+  const [successMsg, setSuccessMsg] = useState('')
+  const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const { signup } = useAuthContext();
   const navigate = useNavigate();
 
-  const emailRef = useRef();
-  const passwordRef = useRef();
-  const passwordConfirmRef = useRef();
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const passwordConfirmRef = useRef(null);
 
   const handSignupleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (passwordRef.current?.value.trim() === '' || passwordConfirmRef.current?.value.trim() === '') {
+      setErrorMsg('Please enter password');
+      return;
+    }   
 
     if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-      setMessage("Passwords do not match");
+      setErrorMsg("Passwords do not match");
       return;
-    }    
+    } 
+
+    setIsLoading(true)
+    setErrorMsg('');   
 
     try { 
-      setMessage('');
-      setIsLoading(true)
       await signup(emailRef.current.value, passwordRef.current.value);
-      navigate('/')
-            
+      setSuccessMsg('New Account is created.');
+      setTimeout(() => {
+        navigate('/');
+      }, 1500)
+      
     } catch (err) {
-      setMessage('Failed to create an account');
-    }
+      setErrorMsg('Failed to create an account');
 
-    setIsLoading(false);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -42,8 +53,8 @@ const Signup = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Sign Up</h2>
-          { message && <Message type='danger' message={message} /> }
-
+          {errorMsg && <Message type='danger' message={errorMsg}/>}
+          {successMsg && <Message type='success' message={successMsg} />}
           <Form onSubmit={handSignupleSubmit}>
             <Form.Group id='email' className='mb-3'>
               <Form.Control 
