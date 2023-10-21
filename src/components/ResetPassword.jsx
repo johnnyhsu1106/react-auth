@@ -2,12 +2,12 @@ import { useRef, useState } from 'react'
 import { Form, Button, Card } from 'react-bootstrap'
 import { Link, useNavigate } from 'react-router-dom'
 
-import Message from './Message'
+import Message from './shared/Message';
+import EmailInput from './shared/EmailInput';
 
 import { useAuthContext } from '../context/AuthContext'
 
 const ResetPassword = () => {
- 
   const [errorMsg, setErrorMsg] = useState('')
   const [successMsg, setSuccessMsg] = useState('')
   const [isLoading, setIsLoading] = useState(false);
@@ -49,14 +49,11 @@ const ResetPassword = () => {
           {successMsg && <Message type='success' message={successMsg} />}
 
           <Form onSubmit={handleFormSubmit}>
-            <Form.Group id='email'>
-              <Form.Control 
-                placeholder='example@gmail.com'
-                type='email' 
-                ref={emailRef} 
-                required />
-            </Form.Group>
-
+            <EmailInput
+              className={'mb-3'} 
+              ref={emailRef} 
+            />
+            
             <Button 
               variant='primary'
               disabled={isLoading || isSucceed} 

@@ -2,7 +2,9 @@ import { useRef, useState } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
-import Message from './Message';
+import Message from './shared/Message';
+import EmailInput from './shared/EmailInput';
+import PasswordInput from './shared/PasswordInput';
 import { useAuthContext } from '../context/AuthContext';
 
 
@@ -44,24 +46,15 @@ const Login = () => {
           { message && <Message type='danger' message={message} /> }
 
           <Form onSubmit={handLoginleSubmit}>
-            <Form.Group id='email' className='mb-3'>
-              <Form.Control 
-                type='email'
-                ref={emailRef}
-                placeholder='example@gmail.com'  
-                required 
-              />
-            </Form.Group>
-
-            <Form.Group id='password'>
-              <Form.Control 
-                type='password' 
-                ref={passwordRef}
-                placeholder='Enter your password'
-                required 
-              />
-            </Form.Group>
-            
+            <EmailInput
+              className={'mb-3'} 
+              ref={emailRef} 
+            />
+            <PasswordInput
+              className='mb-3'
+              placeholder='Enter your password' 
+              ref={passwordRef}
+            />
             <Button 
               variant='primary'
               disabled={isLoading || isSucceed} 

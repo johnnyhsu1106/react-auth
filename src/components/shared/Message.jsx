@@ -5,11 +5,8 @@ const Message = ({
   type, 
   message 
 }) => {
-
   return (
-    <>
-      <Alert variant={type}>{message}</Alert>
-    </>
+    <Alert variant={type}>{message}</Alert>
   )
 }
 

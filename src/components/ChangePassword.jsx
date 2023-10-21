@@ -1,7 +1,8 @@
 import { useState, useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 
-import Message from './Message';
+import Message from './shared/Message';
+import PasswordInput from './shared/PasswordInput';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -59,23 +60,15 @@ const ChangePassword = () => {
           {successMsg && <Message type='success' message={successMsg} />}
 
           <Form onSubmit={handleFormSubmit}>
-            
-            <Form.Group id='password' className='mb-4'>
-              <Form.Control
-                type='password'
-                ref={passwordRef}
-                placeholder='Must have a least 6 characters'
-              />
-            </Form.Group>
-
-            <Form.Group id='password-confirm'>
-              <Form.Control
-                type='password'
-                ref={passwordConfirmRef}
-                placeholder='Confirm your password'
-              />
-            </Form.Group>
-            
+            <PasswordInput
+              className='mb-3'
+              placeholder='Must have a least 6 characters' 
+              ref={passwordRef}
+            />
+            <PasswordInput 
+              placeholder='confirm your password'
+              ref={passwordConfirmRef}
+            />  
             <Button 
               variant='primary'
               disabled={isLoading || isSucceed}
@@ -88,7 +81,8 @@ const ChangePassword = () => {
       </Card>
       <div className='w-100 text-center mt-2'>
         <Button 
-          variant="link" 
+          variant="link"
+          disabled={isLoading || isSucceed} 
           onClick={() => {navigate(-1)}}
         > 
           Cancel          
