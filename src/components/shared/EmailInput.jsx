@@ -14,7 +14,7 @@ const EmailInput = forwardRef(({className}, ref) => {
         required
         placeholder='example@gmail.com'
       />
-  </Form.Group>
+    </Form.Group>
   )
 });
 

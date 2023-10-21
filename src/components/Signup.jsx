@@ -63,7 +63,7 @@ const Signup = () => {
 
           <Form onSubmit={handSignupleSubmit}>  
             <EmailInput
-              className={'mb-3'} 
+              className='mb-3'
               ref={emailRef} 
             />
             <PasswordInput

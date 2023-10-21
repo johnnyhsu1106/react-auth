@@ -9,7 +9,7 @@ import { useAuthContext } from '../context/AuthContext';
 
 
 const Login = () => {
-  const [message, setMessage] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
   const { login } = useAuthContext();
@@ -20,8 +20,13 @@ const Login = () => {
   
   const handLoginleSubmit = async (e) => {
     e.preventDefault();
+    
+    if (passwordRef.current?.value.trim() === '') {
+      setErrorMsg('Please enter password');
+      return;
+    }  
 
-    setMessage('')
+    setErrorMsg('')
     setIsLoading(true)
 
     try { 
@@ -30,7 +35,7 @@ const Login = () => {
       navigation('/');
 
     } catch (err) {
-      setMessage('Failed to log in');
+      setErrorMsg('Failed to log in');
       setIsSucceed(false);
 
     }
@@ -43,15 +48,14 @@ const Login = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Log In</h2>
-          { message && <Message type='danger' message={message} /> }
+          { errorMsg && <Message type='danger' message={errorMsg} /> }
 
           <Form onSubmit={handLoginleSubmit}>
             <EmailInput
-              className={'mb-3'} 
+              className='mb-3'
               ref={emailRef} 
             />
             <PasswordInput
-              className='mb-3'
               placeholder='Enter your password' 
               ref={passwordRef}
             />
