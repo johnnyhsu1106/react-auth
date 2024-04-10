@@ -19,7 +19,7 @@ const ChangePassword = () => {
 
   const navigate = useNavigate();
 
-  const handleFormSubmit = async (e) => {
+  const handleChangePasswordFormSubmit = async (e) => {
     e.preventDefault()
 
     if (passwordRef.current?.value.trim() === '' || passwordConfirmRef.current?.value.trim() === '') {
@@ -60,7 +60,7 @@ const ChangePassword = () => {
           {errorMsg && <Message type='danger' message={errorMsg}/>}
           {successMsg && <Message type='success' message={successMsg} />}
 
-          <Form onSubmit={handleFormSubmit}>
+          <Form onSubmit={handleChangePasswordFormSubmit}>
             <PasswordInput
               className='mb-4'
               placeholder='Must have a least 6 characters' 

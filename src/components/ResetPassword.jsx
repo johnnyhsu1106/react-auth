@@ -17,7 +17,7 @@ const ResetPassword = () => {
   const emailRef = useRef();
   const navigate = useNavigate();
 
-  async function handleFormSubmit(e) {
+  const handleResetPasswordFormSubmit = async (e) => {
     e.preventDefault();
   
     setIsLoading(true)
@@ -39,7 +39,7 @@ const ResetPassword = () => {
     } finally {
       setIsLoading(false);
     }
-  }
+  };
 
   return (
     <>
@@ -49,7 +49,7 @@ const ResetPassword = () => {
           {errorMsg && <Message type='danger' message={errorMsg}/>}
           {successMsg && <Message type='success' message={successMsg} />}
 
-          <Form onSubmit={handleFormSubmit}>
+          <Form onSubmit={handleResetPasswordFormSubmit}>
             <EmailInput ref={emailRef} />
             <FormButton
               variant='primary'

@@ -19,7 +19,7 @@ const Login = () => {
   const emailRef = useRef();
   const passwordRef = useRef();
   
-  const handLoginleSubmit = async (e) => {
+  const handLoginFormSubmit = async (e) => {
     e.preventDefault();
     
     if (passwordRef.current?.value.trim() === '') {
@@ -51,7 +51,7 @@ const Login = () => {
           <h2 className='text-center mb-4'>Log In</h2>
           { errorMsg && <Message type='danger' message={errorMsg} /> }
 
-          <Form onSubmit={handLoginleSubmit}>
+          <Form onSubmit={handLoginFormSubmit}>
             <EmailInput
               className='mb-3'
               ref={emailRef} 

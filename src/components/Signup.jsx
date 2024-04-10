@@ -20,7 +20,7 @@ const Signup = () => {
   const navigate = useNavigate();
 
 
-  const handSignupleSubmit = async (e) => {
+  const handSignupFormSubmit = async (e) => {
     e.preventDefault();
     
     if (passwordRef.current?.value.trim() === '' || passwordConfirmRef.current?.value.trim() === '') {
@@ -62,7 +62,7 @@ const Signup = () => {
           {errorMsg && <Message type='danger' message={errorMsg}/>}
           {successMsg && <Message type='success' message={successMsg} />}
 
-          <Form onSubmit={handSignupleSubmit}>  
+          <Form onSubmit={handSignupFormSubmit}>  
             <EmailInput
               className='mb-3'
               ref={emailRef} 

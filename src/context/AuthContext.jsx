@@ -12,11 +12,11 @@ import {
 import app from '../firebase';
 
 const auth = getAuth(app);
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
 const useAuthContext = () => {
   const auth = useContext(AuthContext);
-  if (auth === undefined) {
+  if (auth === null) {
     throw new Error('useAuthContext must be used within AuthProvider');
   }
   return auth;
@@ -59,7 +59,6 @@ const AuthProvider = ({ children }) => {
 
     return unsubscribe;
   }, []);
-
   
   const value = {
     user,
@@ -69,7 +68,6 @@ const AuthProvider = ({ children }) => {
     resetPassword,
     changePassword,
   };
-
 
   return (
     <AuthContext.Provider value={value}>
