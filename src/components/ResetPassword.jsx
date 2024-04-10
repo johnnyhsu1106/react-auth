@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
+import FormButton from './shared/FormButton';
 
 import { useAuthContext } from '../context/AuthContext'
 
@@ -50,14 +51,13 @@ const ResetPassword = () => {
 
           <Form onSubmit={handleFormSubmit}>
             <EmailInput ref={emailRef} />
-            <Button 
+            <FormButton
               variant='primary'
-              disabled={isLoading || isSucceed} 
-              className='w-100 mt-4' 
+              disabled={isLoading || isSucceed}
+              className='w-100 mt-4'
               type='submit'
-            >
-              Reset Password
-            </Button>
+              text='Reset Password'
+            />  
           </Form>
 
           <div className='w-100 text-center mt-3'>

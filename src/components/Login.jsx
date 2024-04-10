@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
+import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
 
 
@@ -59,13 +60,13 @@ const Login = () => {
               placeholder='Enter your password' 
               ref={passwordRef}
             />
-            <Button 
+            <FormButton
               variant='primary'
-              disabled={isLoading || isSucceed} 
-              className='w-100 mt-4' 
-              type='submit'>
-              Login
-            </Button>
+              disabled={isLoading || isSucceed}
+              className='w-100 mt-4'
+              type='submit'
+              text='Login'
+            />  
           </Form>
           <div className='w-100 text-center mt-3'>
             <Link to='/reset-password'>Forgot Password?</Link>

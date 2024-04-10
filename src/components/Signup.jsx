@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
+import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
 
 
@@ -75,14 +76,13 @@ const Signup = () => {
               placeholder='confirm your password'
               ref={passwordConfirmRef}
             />
-            
-            <Button 
+            <FormButton
               variant='primary'
-              disabled={isLoading || isSucceed} 
-              className='w-100 mt-4' 
-              type='submit'>
-              Sign Up
-            </Button>
+              disabled={isLoading || isSucceed}
+              className='w-100 mt-4'
+              type='submit'
+              text='Sign Up' 
+            />            
           </Form>
 
         </Card.Body>

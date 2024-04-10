@@ -3,6 +3,7 @@ import { Form, Button, Card } from 'react-bootstrap';
 
 import Message from './shared/Message';
 import PasswordInput from './shared/PasswordInput';
+import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -68,14 +69,14 @@ const ChangePassword = () => {
             <PasswordInput 
               placeholder='confirm your password'
               ref={passwordConfirmRef}
-            />  
-            <Button 
+            /> 
+            <FormButton
               variant='primary'
               disabled={isLoading || isSucceed}
-              className='w-100 mt-4' 
-              type='submit'>
-              Update
-            </Button>
+              className='w-100 mt-4'
+              type='submit'
+              text='Update'
+            />  
           </Form>
         </Card.Body>
       </Card>

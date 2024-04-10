@@ -1,7 +1,6 @@
 import { Container } from 'react-bootstrap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-
 import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
@@ -20,12 +19,10 @@ const App = () => {
 
   return (
     <Container 
-      className="d-flex align-items-center justify-content-center .container">
+      className="d-flex align-items-center justify-content-center container">
       <div className='w-100 form-wrapper'>
-     
         <Router>
           <AuthProvider>
-            
             <Routes>
               <Route element={<PrivateRoute/>} >
                 <Route path='/' element={<Dashboard/>} />
@@ -38,11 +35,9 @@ const App = () => {
               <Route path='reset-password' element={<ResetPassword/>} />
               <Route path='*' element={<PageNotFound/>} />
             </Routes>
-
           </AuthProvider>
         </Router>
       </div>
-      
     </Container>
   )
 }
