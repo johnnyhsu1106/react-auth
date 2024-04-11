@@ -46,8 +46,8 @@ const ResetPassword = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Password Reset</h2>
-          {errorMsg && <Message type='danger' message={errorMsg}/>}
-          {successMsg && <Message type='success' message={successMsg} />}
+          {errorMsg ? <Message type='danger' message={errorMsg}/> : null}
+          {successMsg ? <Message type='success' message={successMsg} /> : null}
 
           <Form onSubmit={handleResetPasswordFormSubmit}>
             <EmailInput ref={emailRef} />

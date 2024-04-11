@@ -51,7 +51,7 @@ const Login = () => {
       <Card>
         <Card.Body>
           <h2 className='text-center mb-4'>Log In</h2>
-          { errorMsg && <Message type='danger' message={errorMsg} /> }
+          {errorMsg ? <Message type='danger' message={errorMsg} /> : null}
 
           <Form onSubmit={handLoginFormSubmit}>
             <EmailInput

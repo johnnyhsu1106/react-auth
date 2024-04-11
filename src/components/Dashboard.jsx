@@ -27,7 +27,7 @@ const Dashboard = () => {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Profile</h2>
-          {errorMsg && <Message type='danger' message={errorMsg} />}
+          {errorMsg ? <Message type='danger' message={errorMsg} /> : null}
           <div><strong>Email: </strong> { user.email }</div>
           <div><strong>Last Sign In:</strong> { user.metadata.lastSignInTime}</div>
           <Link 
