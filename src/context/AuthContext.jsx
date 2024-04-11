@@ -8,8 +8,8 @@ import {
   sendPasswordResetEmail,
   onAuthStateChanged 
 } from "firebase/auth";
-
 import app from '../firebase';
+
 
 const auth = getAuth(app);
 const AuthContext = createContext(null);

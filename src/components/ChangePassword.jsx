@@ -1,12 +1,12 @@
 import { useState, useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
-
 import Message from './shared/Message';
 import PasswordInput from './shared/PasswordInput';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { REDIRECTION_TIMEOUT } from '../const';
+
 
 const ChangePassword = () => {
   const [errorMsg, setErrorMsg] = useState('');

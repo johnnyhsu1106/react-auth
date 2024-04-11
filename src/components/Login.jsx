@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import { Form, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
-
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
