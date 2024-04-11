@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './shared/Message';
@@ -7,6 +7,7 @@ import EmailInput from './shared/EmailInput';
 import FormButton from './shared/FormButton';
 
 import { useAuthContext } from '../context/AuthContext'
+import { REDIRECTION_TIMEOUT } from '../const';
 
 const ResetPassword = () => {
   const [errorMsg, setErrorMsg] = useState('')
@@ -20,17 +21,16 @@ const ResetPassword = () => {
   const handleResetPasswordFormSubmit = async (e) => {
     e.preventDefault();
   
-    setIsLoading(true)
-    setErrorMsg('')
-
     try {
+      setIsLoading(true)
+      setErrorMsg('')
       await resetPassword(emailRef.current?.value || '');
       setSuccessMsg('Check your inbox for reset your password.');
       setIsSucceed(true);
 
       setTimeout(() => {
         navigate('/login');
-      }, 3000)
+      }, REDIRECTION_TIMEOUT)
       
     } catch (err) {
       setErrorMsg('Failed to reset password');
@@ -52,11 +52,12 @@ const ResetPassword = () => {
           <Form onSubmit={handleResetPasswordFormSubmit}>
             <EmailInput ref={emailRef} />
             <FormButton
-              variant='primary'
-              disabled={isLoading || isSucceed}
-              className='w-100 mt-4'
-              type='submit'
+              className='w-100 mt-4' 
+              isLoading={isLoading}
+              isSucceed={isSucceed}
               text='Reset Password'
+              type='submit'
+              variant='primary'  
             />  
           </Form>
 

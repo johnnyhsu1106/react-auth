@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 
 import Message from './shared/Message';
@@ -7,6 +7,7 @@ import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
+import { REDIRECTION_TIMEOUT } from '../const';
 
 
 const Login = () => {
@@ -27,14 +28,15 @@ const Login = () => {
       return;
     }  
 
-    setErrorMsg('')
-    setIsLoading(true)
-
     try { 
+      setErrorMsg('')
+      setIsLoading(true)
       await login(emailRef.current.value, passwordRef.current.value);
       setIsSucceed(true);
-      navigation('/');
-
+      setTimeout(() => {
+        navigation('/');
+      }, REDIRECTION_TIMEOUT);
+      
     } catch (err) {
       setErrorMsg('Failed to log in');
       setIsSucceed(false);
@@ -62,7 +64,8 @@ const Login = () => {
             />
             <FormButton
               variant='primary'
-              disabled={isLoading || isSucceed}
+              isLoading={isLoading}
+              isSucceed={isSucceed}
               className='w-100 mt-4'
               type='submit'
               text='Login'

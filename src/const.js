@@ -1,0 +1,5 @@
+const REDIRECTION_TIMEOUT = 5900;
+
+export { 
+  REDIRECTION_TIMEOUT 
+};

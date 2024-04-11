@@ -1,11 +1,12 @@
 import { useRef, useState } from 'react';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
+import { REDIRECTION_TIMEOUT } from '../const';
 
 
 const Signup = () => {
@@ -33,16 +34,16 @@ const Signup = () => {
       return;
     } 
 
-    setIsLoading(true)
-    setErrorMsg('');   
 
-    try { 
+    try {
+      setIsLoading(true)
+      setErrorMsg('');      
       await signup(emailRef.current?.value || '', passwordRef.current?.value || '');
       setSuccessMsg('New Account is created.');
       setIsSucceed(true);
       setTimeout(() => {
         navigate('/');
-      }, 1500);
+      }, REDIRECTION_TIMEOUT);
       
     } catch (err) {
       setErrorMsg('Failed to create an account');
@@ -73,15 +74,17 @@ const Signup = () => {
               ref={passwordRef}
             />
             <PasswordInput 
+              className='mb-3'
               placeholder='confirm your password'
               ref={passwordConfirmRef}
             />
             <FormButton
-              variant='primary'
-              disabled={isLoading || isSucceed}
-              className='w-100 mt-4'
+              className='w-100'
+              isLoading={isLoading}
+              isSucceed={isSucceed}
+              text='Sign Up'
               type='submit'
-              text='Sign Up' 
+              variant='primary'
             />            
           </Form>
 

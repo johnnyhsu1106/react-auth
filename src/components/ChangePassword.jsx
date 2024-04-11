@@ -6,6 +6,7 @@ import PasswordInput from './shared/PasswordInput';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
+import { REDIRECTION_TIMEOUT } from '../const';
 
 const ChangePassword = () => {
   const [errorMsg, setErrorMsg] = useState('');
@@ -32,16 +33,15 @@ const ChangePassword = () => {
       return;
     }
 
-    setIsLoading(true);
-    setErrorMsg('');
-
     try {
+      setIsLoading(true);
+      setErrorMsg('');  
       await changePassword(passwordRef.current.value);
       setSuccessMsg(`Password has been updated.`);
       setIsSucceed(true);
       setTimeout(() => {
         navigate('/login');    
-      }, 1500)
+      }, REDIRECTION_TIMEOUT)
       
     } catch (err) {
       setErrorMsg('Failed to change password.');
@@ -71,11 +71,12 @@ const ChangePassword = () => {
               ref={passwordConfirmRef}
             /> 
             <FormButton
-              variant='primary'
-              disabled={isLoading || isSucceed}
-              className='w-100 mt-4'
-              type='submit'
+              className='w-100 mt-4' 
+              isLoading={isLoading}
+              isSucceed={isSucceed}
               text='Update'
+              type='submit'
+              variant='primary'  
             />  
           </Form>
         </Card.Body>
@@ -83,7 +84,6 @@ const ChangePassword = () => {
       <div className='w-100 text-center mt-2'>
         <Button 
           variant="link"
-          disabled={isLoading || isSucceed} 
           onClick={() => {navigate(-1)}}
         > 
           Cancel          
