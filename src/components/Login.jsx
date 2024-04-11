@@ -40,7 +40,6 @@ const Login = () => {
     } catch (err) {
       setErrorMsg('Failed to log in');
       setIsSucceed(false);
-
     }
 
     setIsLoading(false);
@@ -71,10 +70,13 @@ const Login = () => {
               text='Login'
             />  
           </Form>
-          <div className='w-100 text-center mt-3'>
-            <Link to='/reset-password'>Forgot Password?</Link>
-          </div>
-
+          {!isSucceed ? 
+            <div className='w-100 text-center mt-3'>
+              <Link to='/reset-password'>Forgot Password?</Link>
+            </div> 
+          : 
+            null
+          }
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>

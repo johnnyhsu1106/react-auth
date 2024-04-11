@@ -71,7 +71,7 @@ const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider value={value}>
-      {!isLoading && children}
+      {!isLoading ? children : null}
     </AuthContext.Provider>
   )
 }
