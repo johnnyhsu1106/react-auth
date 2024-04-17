@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard';
 import Login from './components/Login';
 import Signup from './components/Signup';
 import ResetPassword from './components/ResetPassword';
-import ChangePassword from './components/ChangePassword';
+import ChangeProfile from './components/ChangeProfile';
 import PageNotFound from './components/PageNotFound';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider } from './context/AuthContext'
@@ -24,7 +24,7 @@ const App = () => {
                 <Route path='/' element={<Dashboard/>} />
               </Route>
               <Route element={<PrivateRoute/>} >
-                <Route path='change-password' element={<ChangePassword/>} />
+                <Route path='change-profile' element={<ChangeProfile/>} />
               </Route>
               <Route path='signup' element={<Signup/>} />
               <Route path='login' element={<Login/>} />

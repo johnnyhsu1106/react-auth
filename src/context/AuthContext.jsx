@@ -2,6 +2,7 @@ import { createContext, useContext, useState, useEffect } from 'react';
 import { 
   getAuth, 
   createUserWithEmailAndPassword,
+  updateEmail,
   updatePassword,
   signInWithEmailAndPassword,
   signOut, 
@@ -9,6 +10,7 @@ import {
   onAuthStateChanged 
 } from "firebase/auth";
 import app from '../firebase';
+import PropTypes from 'prop-types';
 
 
 const auth = getAuth(app);
@@ -42,6 +44,15 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email)
   };
 
+  const changeEmail = (email) => { 
+    if (!user) {
+      return new Promise((_, reject) => {
+        reject('User is null');
+      })
+    }
+    return updateEmail(user, email);
+  }
+
   const changePassword = (password) => {
     if (!user) {
       return new Promise((_, reject) => {
@@ -66,6 +77,7 @@ const AuthProvider = ({ children }) => {
     logout,
     signup, 
     resetPassword,
+    changeEmail,
     changePassword,
   };
 
@@ -74,6 +86,10 @@ const AuthProvider = ({ children }) => {
       {!isLoading ? children : null}
     </AuthContext.Provider>
   )
-}
+};
+
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 
 export { useAuthContext, AuthProvider };

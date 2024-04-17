@@ -50,7 +50,6 @@ const Login = () => {
         <Card.Body>
           <h2 className='text-center mb-4'>Log In</h2>
           {errorMsg ? <Message type='danger' message={errorMsg} /> : null}
-
           <Form onSubmit={handLoginFormSubmit}>
             <EmailInput
               className='mb-3'
@@ -69,13 +68,9 @@ const Login = () => {
               text='Login'
             />  
           </Form>
-          {!isSucceed ? 
-            <div className='w-100 text-center mt-3'>
-              <Link to='/reset-password'>Forgot Password?</Link>
-            </div> 
-          : 
-            null
-          }
+          <div className='w-100 text-center mt-3'>
+            <Link to='/reset-password'>Forgot Password?</Link>
+          </div> 
         </Card.Body>
       </Card>
       <div className='w-100 text-center mt-2'>

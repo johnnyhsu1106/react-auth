@@ -2,11 +2,13 @@ import { useState, useId, forwardRef } from 'react';
 import { Form } from 'react-bootstrap';
 import showPasswordIcon from '/images/show-password.svg';
 import hidePasswordIcon from '/images/hide-password.svg';
+import PropTypes from 'prop-types';
 
 
 const PasswordInput = forwardRef(({
-  className='',
+  className,
   placeholder,
+  required
 }, ref) => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const passwordInputId = useId();
@@ -24,7 +26,7 @@ const PasswordInput = forwardRef(({
     >
       <Form.Control
         type={isPasswordShown ? 'text' : 'password'}
-        required 
+        required={required} 
         placeholder={placeholder}
         ref={ref}
       />
@@ -36,6 +38,20 @@ const PasswordInput = forwardRef(({
       />
     </Form.Group>
   )
-})
+});
+
+PasswordInput.displayName = 'PasswordInput';
+
+PasswordInput.defaultProps = {
+  className: '',
+  placeholder: '',
+  required: true
+};
+
+PasswordInput.propTypes = {
+  className: PropTypes.string,
+  placeholder: PropTypes.string,
+  required: PropTypes.bool
+};
 
 export default PasswordInput;

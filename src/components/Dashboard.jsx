@@ -11,9 +11,8 @@ const Dashboard = () => {
   const navigate = useNavigate();
   
   const handleUserLogout = async () => {
-    setErrorMsg('')
-
     try {
+      setErrorMsg('')
       await logout();
       navigate('/login');      
     
@@ -31,9 +30,9 @@ const Dashboard = () => {
           <div><strong>Email: </strong> { user.email }</div>
           <div><strong>Last Sign In:</strong> { user.metadata.lastSignInTime}</div>
           <Link 
-            to="/change-password" 
+            to="/change-profile" 
             className="btn btn-primary w-100 mt-3">
-            Change Password
+            Change Profile
           </Link>
         </Card.Body>
       </Card>

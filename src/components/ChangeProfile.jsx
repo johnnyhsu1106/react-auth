@@ -1,6 +1,7 @@
 import { useState, useRef } from 'react';
 import { Form, Button, Card } from 'react-bootstrap';
 import Message from './shared/Message';
+import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext';
@@ -8,43 +9,47 @@ import { useNavigate } from 'react-router-dom';
 import { REDIRECTION_TIMEOUT } from '../const';
 
 
-const ChangePassword = () => {
+const ChangeProfile = () => {
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [isSucceed, setIsSucceed] = useState(false);
+  const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const passwordConfirmRef = useRef(null);
 
-  const { changePassword } = useAuthContext();
-
+  const { 
+    user, 
+    changeEmail, 
+    changePassword 
+  } = useAuthContext();
+  
   const navigate = useNavigate();
 
-  const handleChangePasswordFormSubmit = async (e) => {
+  const handleChangeProfileFormSubmit = async (e) => {
     e.preventDefault()
 
-    if (passwordRef.current?.value.trim() === '' || passwordConfirmRef.current?.value.trim() === '') {
-      setErrorMsg('Please enter password');
-      return;
-    }
-
-    if (passwordRef.current.value !== passwordConfirmRef.current.value) {
+    if (passwordRef.current?.value.trim() !== passwordConfirmRef.current?.value.trim()) {
       setErrorMsg('Passwords do not match');
       return;
     }
 
     try {
       setIsLoading(true);
-      setErrorMsg('');  
+      setErrorMsg('');
+      console.log(emailRef.current?.value);
+      await changeEmail(emailRef.current?.value);  
+      if (passwordRef.current?.value !== '' && passwordConfirmRef.current?.value !== '') {
       await changePassword(passwordRef.current.value);
-      setSuccessMsg(`Password has been updated.`);
+      }
+      setSuccessMsg(`Profile has been updated.`);
       setIsSucceed(true);
       setTimeout(() => {
         navigate('/login');    
       }, REDIRECTION_TIMEOUT)
       
     } catch (err) {
-      setErrorMsg('Failed to change password.');
+      setErrorMsg('Failed to change profile');
       setIsSucceed(false);
 
     } finally {
@@ -56,22 +61,30 @@ const ChangePassword = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Change Password</h2>
+          <h2 className='text-center mb-4'>Change Profile</h2>
           {errorMsg ? <Message type='danger' message={errorMsg}/> : null}
           {successMsg ? <Message type='success' message={successMsg} /> : null}
 
-          <Form onSubmit={handleChangePasswordFormSubmit}>
+          <Form onSubmit={handleChangeProfileFormSubmit}>
+            <EmailInput
+              className='mb-3'
+              ref={emailRef}
+              defaultValue={user.email}
+            />
             <PasswordInput
               className='mb-4'
-              placeholder='Must have a least 6 characters' 
+              placeholder='Leave blank to keep the same password' 
               ref={passwordRef}
+              required={false}
             />
-            <PasswordInput 
-              placeholder='confirm your password'
+            <PasswordInput
+              className='mb-4' 
+              placeholder='Leave blank to keep the same password'
               ref={passwordConfirmRef}
+              required={false}
             /> 
             <FormButton
-              className='w-100 mt-4' 
+              className='w-100' 
               isLoading={isLoading}
               isSucceed={isSucceed}
               text='Update'
@@ -94,4 +107,4 @@ const ChangePassword = () => {
   )
 }
 
-export default ChangePassword;
+export default ChangeProfile;

@@ -1,16 +1,17 @@
 import { Button } from 'react-bootstrap';
 import './FormButton.css';
 import checkIcon from '/images/checkbox-circular-stroke.svg'
+import PropTypes from 'prop-types';
 
 
 const FormButton = ({
   className,
-  disabled=false,
-  isSucceed=false,
-  isLoading=false,
-  type='submit',
-  text='Submit',
-  variant='primary',
+  disabled,
+  isSucceed,
+  isLoading,
+  type,
+  text,
+  variant,
 }) => {
   if (isLoading) {
     return (
@@ -21,7 +22,7 @@ const FormButton = ({
         variant={variant}
       >
         <div className='spinner-border spinner-border-sm'  role="status">
-          <span class="sr-only">Loading...</span>
+          <span className="sr-only">Loading...</span>
         </div>
       </Button>
     )
@@ -45,6 +46,28 @@ const FormButton = ({
       {text}
     </Button>
   )
+};
+
+FormButton.displayName = 'FormButton';
+
+FormButton.defaultProps = {
+  className: '',
+  disabled: false,
+  isSucceed: false,
+  isLoading: false,
+  type: 'submit',
+  text: 'Submit',
+  variant: 'primary',
+};
+
+FormButton.propTypes = {
+  className: PropTypes.string,
+  disabled: PropTypes.bool,
+  isSucceed: PropTypes.bool,
+  isLoading: PropTypes.bool,
+  type: PropTypes.string,
+  text: PropTypes.string,
+  variant: PropTypes.string,
 };
 
 export default FormButton;
