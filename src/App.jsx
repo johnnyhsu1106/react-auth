@@ -14,8 +14,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 
 const App = () => {
   return (
-    <Container 
-      className="d-flex align-items-center justify-content-center container">
+    <Container className="d-flex align-items-center justify-content-center container">
       <div className='w-100 form-wrapper'>
         <Router>
           <AuthProvider>

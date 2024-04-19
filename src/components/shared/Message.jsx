@@ -5,6 +5,10 @@ const Message = ({
   type, 
   message 
 }) => {
+  if (!message) {
+    return null;
+  }
+  
   return (
     <Alert variant={type}>{message}</Alert>
   )

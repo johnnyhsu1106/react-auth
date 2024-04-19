@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { Card, Button } from "react-bootstrap"
 import { Link, useNavigate } from 'react-router-dom';
+import FormHeading from './shared/FormHeading';
+import FormFooter from './shared/FormFooter';
 import Message from './shared/Message';
 import { useAuthContext } from '../context/AuthContext';
 
@@ -25,8 +27,8 @@ const Dashboard = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className="text-center mb-4">Profile</h2>
-          {errorMsg ? <Message type='danger' message={errorMsg} /> : null}
+          <FormHeading text='Profile' />
+          <Message type='danger' message={errorMsg} />
           <div><strong>Email: </strong> { user.email }</div>
           <div><strong>Last Sign In:</strong> { user.metadata.lastSignInTime}</div>
           <Link 
@@ -36,14 +38,11 @@ const Dashboard = () => {
           </Link>
         </Card.Body>
       </Card>
-      <div className="w-100 text-center mt-2">
-        <Button 
-          variant="link" 
-          onClick={handleUserLogout}
-        >
+      <FormFooter>
+        <Button variant="link" onClick={handleUserLogout}>
           Log Out
         </Button>
-      </div>
+      </FormFooter>
     </> 
   )
 }

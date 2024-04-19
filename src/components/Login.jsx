@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
+import FormHeading from './shared/FormHeading';
 import FormButton from './shared/FormButton';
+import FormFooter from './shared/FormFooter';
 import { useAuthContext } from '../context/AuthContext';
 import { REDIRECTION_TIMEOUT } from '../const';
 
@@ -48,8 +50,8 @@ const Login = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Log In</h2>
-          {errorMsg ? <Message type='danger' message={errorMsg} /> : null}
+          <FormHeading text='Log In' />
+          <Message type='danger' message={errorMsg} />
           <Form onSubmit={handLoginFormSubmit}>
             <EmailInput
               className='mb-3'
@@ -68,14 +70,23 @@ const Login = () => {
               text='Login'
             />  
           </Form>
-          <div className='w-100 text-center mt-3'>
-            <Link to='/reset-password'>Forgot Password?</Link>
-          </div> 
+          
+          <Link 
+            className='d-flex w-100 justify-content-center mt-3' 
+            to='/reset-password'
+          >
+            Forgot Password?
+          </Link>
+           
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-        Need an account? <Link to='/signup'>Sign up</Link>
+      <FormFooter text='Need an account?'>
+        <Link to='/signup'>Sign up</Link>
+      </FormFooter>
+      <div className='w-100 text-center mt-2 mb-4'>
+         
       </div>
+
     </>
   )
 }

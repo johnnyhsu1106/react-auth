@@ -3,6 +3,7 @@ import { Form, Card } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
+import FormHeading from './shared/FormHeading';
 import FormButton from './shared/FormButton';
 import { useAuthContext } from '../context/AuthContext'
 import { REDIRECTION_TIMEOUT } from '../const';
@@ -44,10 +45,9 @@ const ResetPassword = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Password Reset</h2>
-          {errorMsg ? <Message type='danger' message={errorMsg}/> : null}
-          {successMsg ? <Message type='success' message={successMsg} /> : null}
-
+          <FormHeading text='Reset Password' />
+          <Message type='danger' message={errorMsg} />
+          <Message type='success' message={successMsg} />
           <Form onSubmit={handleResetPasswordFormSubmit}>
             <EmailInput ref={emailRef} />
             <FormButton

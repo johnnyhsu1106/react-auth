@@ -3,7 +3,9 @@ import { Form, Button, Card } from 'react-bootstrap';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
+import FormHeading from './shared/FormHeading';
 import FormButton from './shared/FormButton';
+import FormFooter from './shared/FormFooter';
 import { useAuthContext } from '../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { REDIRECTION_TIMEOUT } from '../const';
@@ -61,10 +63,9 @@ const ChangeProfile = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Change Profile</h2>
-          {errorMsg ? <Message type='danger' message={errorMsg}/> : null}
-          {successMsg ? <Message type='success' message={successMsg} /> : null}
-
+          <FormHeading text='Change Profile' />
+          <Message type='danger' message={errorMsg}/>
+          <Message type='success' message={successMsg} />
           <Form onSubmit={handleChangeProfileFormSubmit}>
             <EmailInput
               className='mb-3'
@@ -94,15 +95,11 @@ const ChangeProfile = () => {
           </Form>
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-        <Button 
-          variant="link"
-          onClick={() => {navigate(-1)}}
-        > 
+      <FormFooter>
+        <Button variant="link" onClick={() => {navigate(-1)}}> 
           Cancel          
         </Button>
-
-      </div>
+      </FormFooter>
     </>
   )
 }

@@ -4,7 +4,9 @@ import { Link, useNavigate } from 'react-router-dom';
 import Message from './shared/Message';
 import EmailInput from './shared/EmailInput';
 import PasswordInput from './shared/PasswordInput';
+import FormHeading from './shared/FormHeading';
 import FormButton from './shared/FormButton';
+import FormFooter from './shared/FormFooter';
 import { useAuthContext } from '../context/AuthContext';
 import { REDIRECTION_TIMEOUT } from '../const';
 
@@ -59,10 +61,9 @@ const Signup = () => {
     <>
       <Card>
         <Card.Body>
-          <h2 className='text-center mb-4'>Sign Up</h2>
-          {errorMsg ? <Message type='danger' message={errorMsg}/> : null}
-          {successMsg ? <Message type='success' message={successMsg} /> : null}
-
+          <Message type='danger' message={errorMsg} />
+          <Message type='success' message={successMsg} />
+          <FormHeading text='Sign Up' />
           <Form onSubmit={handSignupFormSubmit}>  
             <EmailInput
               className='mb-3'
@@ -90,9 +91,9 @@ const Signup = () => {
 
         </Card.Body>
       </Card>
-      <div className='w-100 text-center mt-2'>
-        Already have an account? <Link to="/login">Log In</Link>
-      </div>
+      <FormFooter text='Already have an account?'>
+        <Link to="/login">Log In</Link>
+      </FormFooter>
     </>
   )
 }

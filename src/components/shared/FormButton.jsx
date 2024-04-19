@@ -13,21 +13,6 @@ const FormButton = ({
   text,
   variant,
 }) => {
-  if (isLoading) {
-    return (
-      <Button 
-        className={className} 
-        disabled={disabled || isLoading || isSucceed} 
-        type={type}
-        variant={variant}
-      >
-        <div className='spinner-border spinner-border-sm'  role="status">
-          <span className="sr-only">Loading...</span>
-        </div>
-      </Button>
-    )
-  }
-
   if (isSucceed) {
     return (
       <div className='d-flex justify-content-center mt-3'> 
@@ -43,7 +28,11 @@ const FormButton = ({
       type={type}
       variant={variant}
     >
-      {text}
+      {isLoading ? 
+        (<div className='spinner-border spinner-border-sm'  role="status">
+          <span className="sr-only">Loading...</span>
+        </div>) : text
+      }
     </Button>
   )
 };

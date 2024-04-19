@@ -12,7 +12,9 @@ const EmailInput = forwardRef(({
 
   return (
     <Form.Group 
-      controlId={`email-${emailInputId}`} className={className}>
+      controlId={`email-${emailInputId}`} 
+      className={className}
+    >
       <Form.Control 
         type='email' 
         ref={ref} 
